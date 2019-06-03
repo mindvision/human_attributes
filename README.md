@@ -147,7 +147,7 @@ purchase.human_updated_at #=> "1984"
 With...
 
 ```ruby
-pruchase = Purchase.new
+purchase = Purchase.new
 purchase.expired_at = "04/06/1984 09:20:00"
 purchase.created_at = "04/06/1984 09:20:00"
 purchase.updated_at = "04/06/1984 09:20:00"
@@ -186,7 +186,7 @@ purchase.human_updated_at #=> "1984"
 With...
 
 ```ruby
-pruchase = Purchase.new
+purchase = Purchase.new
 purchase.paid = true
 ```
 
@@ -195,8 +195,11 @@ And `/your_app/config/locales/en.yml`
 ```yaml
 en:
   boolean:
-    positive: "Yes"
-    negative: "No"
+    true: "Yes"
+    false: "No"
+    paid:
+     true: 'Paid'
+     false: 'Unpaid'
 ```
 
 Having...
@@ -204,15 +207,22 @@ Having...
 ```ruby
 class Purchase < ActiveRecord::Base
   humanize :paid, boolean: true
+  humanize :active, boolean: true
 end
 ```
 
 You can do...
 
 ```ruby
-purchase.human_paid #=> "Yes"
+# custom label on en.yml
+purchase.human_paid #=> "Paid"
 purchase.paid = false
-purchase.human_paid #=> "No"
+purchase.human_paid #=> "Unpaid"
+
+# default boolean label on en.yml
+purchase.human_active #=> "Yes"
+purchase.active = false
+purchase.human_active #=> "No"
 ```
 
 #### Enumerize
