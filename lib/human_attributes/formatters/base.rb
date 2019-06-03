@@ -19,7 +19,7 @@ module HumanAttributes
         "#{attribute}_#{suffix}"
       end
 
-      def apply(_instance, _value)
+      def apply(_instance, _value, method_name)
         raise_error('NotImplemented')
       end
     end

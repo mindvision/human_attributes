@@ -11,7 +11,7 @@ module HumanAttributes
     def build(formatter)
       model_class.send(:define_method, formatter.method_name) do
         value = send(formatter.attribute) || formatter.default
-        formatter.apply(self, value)
+        formatter.apply(self, value, formatter.method_name)
       end
 
       formatter.method_name

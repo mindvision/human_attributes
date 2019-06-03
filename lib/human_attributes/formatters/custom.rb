@@ -9,7 +9,7 @@ module HumanAttributes
         super
       end
 
-      def apply(instance, value)
+      def apply(instance, value, method_name)
         formatter.call(instance, value)
       end
     end
